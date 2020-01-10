@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Training Factory{% endblock %}</title>
+</head>
+<body>
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img class="logo" src="img/logo.png">Training Factory</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{{ path('home') }}">Home</a>
+                {% if is_granted ('ROLE_ADMIN') %}
+                    <a class="nav-item nav-link active" href="{{ path('admin_instructeur_index') }}">Overzicht instructeurs</a>
+                    <a class="nav-item nav-link active" href="">Overzicht leden</a>
+                    <a class="nav-item nav-link active" href="{{ path('aanbod') }}">Lessen</a>
+                {% elseif is_granted('ROLE_INSTRUCTOR') %}
+                    <a class="nav-item nav-link active" href="{{ path('aanbod') }}">Zie lessen</a>
+                {% else %}
+                    <a class="nav-item nav-link active" href="{{ path('aanbod') }}">Training aanbod</a>
+                    <a class="nav-item nav-link active" href="{{ path('showgedragregels') }}">Gedragsregels</a>
+                    <a class="nav-item nav-link" href="{{ path('showcontact') }}">Contact</a>
+                {% endif %}
+
+            </div>
+        </div>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a type="button" class="btn btn-success" href="{{ path('profiel_edit') }}">Profiel bewerken</a>
+            <a type="button" class="btn btn-danger ml-2" href="{{ path('app_logout') }}" style="float: right">Uitloggen</a>
+        {% else %}
+            <a type="button" class="btn btn-primary" href="{{ path('app_login') }}" style="float: right">Inloggen</a>
+            <a type="button" class="btn btn-primary" href="{{ path('registreren') }}" style="float: right; margin-left: 5px">Registreren</a>
+        {% endif %}
+
+    </nav>
+
+    <div class="container">
+        <img class="img-fluid col-4 float-left" src="{{ asset('img/MMA.jpg') }}" alt="MMA">
+        <img class="img-fluid col-4 float-left" src="{{ asset('img/Kickboksen.jpg') }}" alt="Kickboksen">
+        <img class="img-fluid col-4 float-left" src="{{ asset('img/StootzakTraining.png') }}" alt="StootzakTraining">
+
+        {% block content %}
+        {% endblock %}
+
+        {% block welkom %}
+        {% endblock %}
+
+        {% block gedragsregels %}
+        {% endblock %}
+
+        {% block contact %}
+        {% endblock %}
+
+        {% block registreren %}
+        {% endblock %}
+
+        {% block contentLog %}
+        {% endblock %}
+
+        {% block show %}
+        {% endblock %}
+
+        {% block newTraining %}
+        {% endblock %}
+
+        {% block update %}
+        {% endblock %}
+
+        {% block medewerkers %}
+        {% endblock %}
+
+        {#        {% block index %}#}
+        {#        {% endblock %}#}
+
+    </div>
+
+{% endblock %}
+
+
+{#{% block footer %}#}
+{#    <footer>#}
+{#        Informatie#}
+{#    </footer>#}
+{#{% endblock %}#}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+</body>
+</html>

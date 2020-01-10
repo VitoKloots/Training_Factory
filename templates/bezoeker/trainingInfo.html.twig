@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block trainingInfo %}
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ tr.naam }}</h5>
+                <p class="card-text">{{ tr.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ tr.duur }} minuten</li>
+                <li class="list-group-item">&euro; {{ tr.kosten }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["disqus_comments"],{"Zhr/":function(n,t,i){"use strict";i.r(t);var o=i("EVdn"),w=i.n(o),d=window.DISQUS_COMMENT_URL;window.onNewDisqusComment=function(n){w.a.ajax({url:d,method:"POST",data:{id:n.id,text:n.text}})}}},[["Zhr/","runtime",0]]]);

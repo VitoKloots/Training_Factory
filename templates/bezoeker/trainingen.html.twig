@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-success text-white" href="{{ path('admin_training_new') }}">Training toevoegen</a>
+    {% endif %}
+
+    <div class="row">
+
+        {% for tr in trainingen %}
+            <div class="card" style="width: 28%; margin: 3% 0 2% 4%">
+                <div class="card-body">
+                    <h5 class="card-title">{{ tr.naam }}</h5>
+                    <p class="card-text">{{ tr.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="btn btn-primary text-black" href="">Inschrijven</a>
+                    {% else %}
+                    <li class="list-group-item">{{ tr.duur }} minuten</li>
+                    <li class="list-group-item">&euro; {{ tr.kosten }}</li>
+                        {% endif %}
+                    <li class="list-group-item">
+{#                        <a class="btn btn-primary text-black" href="{{ path('admin_training_show', {'id': tr.id}) }}">Informatie</a>#}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-primary text-black" href="{{ path('admin_training_edit', {'id': tr.id}) }}">Edit</a>
+                            <a class="btn btn-primary text-black" href="{{ path('admin_training_delete', {'id': tr.id}) }}">Delete</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{#    <div>#}
+    {#        <!-- Nav tabs -->#}
+    {#        <div class="row justify-content-center">#}
+    {#            <ul class="nav nav-tabs float-left mt-10" id="myTab" role="tablist">#}
+    {#                <li class="nav-item">#}
+    {#                    <a class="nav-link active" id="maandag-tab" data-toggle="tab" href="#maandag" role="tab"#}
+    {#                       aria-controls="maandag" aria-selected="true">Maandag</a>#}
+    {#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" id="dinsdag-tab" data-toggle="tab" href="#dinsdag" role="tab"#}
+{#                       aria-controls="dinsdag" aria-selected="false">Dinsdag</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" id="woensdag-tab" data-toggle="tab" href="#woensdag" role="tab"#}
+{#                       aria-controls="woensdag" aria-selected="false">Woensdag</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" id="donderdag-tab" data-toggle="tab" href="#donderdag" role="tab"#}
+{#                       aria-controls="donderdag" aria-selected="false">Donderdag</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" id="vrijdag-tab" data-toggle="tab" href="#vrijdag" role="tab"#}
+{#                       aria-controls="vrijdag" aria-selected="false">Vrijdag</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" id="zaterdag-tab" data-toggle="tab" href="#zaterdag" role="tab"#}
+{#                       aria-controls="zaterdag" aria-selected="false">Zaterdag</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" id="zondag-tab" data-toggle="tab" href="#zondag" role="tab"#}
+{#                       aria-controls="zondag" aria-selected="false">Zondag</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
+
+{#        <!-- Tab panes -->#}
+{#        <div class="tab-content">#}
+{#            <div class="tab-pane active" id="maandag" role="tabpanel" aria-labelledby="maandag-tab"></div>#}
+{#            <div class="tab-pane" id="dinsdag" role="tabpanel" aria-labelledby="dinsdag-tab">Dinsdag</div>#}
+{#            <div class="tab-pane" id="woensdag" role="tabpanel" aria-labelledby="woensdag-tab">Woensdag</div>#}
+{#            <div class="tab-pane" id="donderdag" role="tabpanel" aria-labelledby="donderdag-tab">Donderdag</div>#}
+{#            <div class="tab-pane" id="vrijdag" role="tabpanel" aria-labelledby="vrijdag-tab">{{ block("agenda", "bezoeker/agenda.html.twig") }}</div>#}
+{#            <div class="tab-pane" id="zaterdag" role="tabpanel" aria-labelledby="zaterdag-tab"></div>#}
+{#            <div class="tab-pane" id="zondag" role="tabpanel" aria-labelledby="zondag-tab"></div>#}
+{#        </div>#}
+    </div>
+
+{% endblock %}

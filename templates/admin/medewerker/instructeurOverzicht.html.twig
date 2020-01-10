@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block medewerkers %}
+    <a type="button" class="btn btn-success" href="{{ path('admin_registreren_Instructeur') }}">Instructeur toevoegen</a>
+
+    {% for in in instructor  %}
+
+    {% endfor %}
+
+{% endblock %}

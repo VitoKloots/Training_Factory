@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block contact %}
+    <div class="card" style="width: 25rem; float: left">
+        <div class="card-header font-weight-bold">
+            Adres gegevens
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Training Factory</li>
+            <li class="list-group-item">Monierweg 20</li>
+            <li class="list-group-item">0524- 22 37 79</li>
+            <li class="list-group-item">training-factory@outlook.com</li>
+        </ul>
+    </div>
+
+    <div class="card" style="width: 25rem; float: left">
+        <div class="card-header font-weight-bold">
+            Openingstijden
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Maandag t/m vrijdag</li>
+            <li class="list-group-item">08:00 - 22:00</li>
+            <li class="list-group-item">Zaterdag en zondag</li>
+            <li class="list-group-item">09:00 - 14:00</li>
+        </ul>
+    </div>
+
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="400" height="400" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=Tinwerf%2014&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <a href="https://www.whatismyip-address.com">ip tacer</a></div>
+        <style>
+            .mapouter {
+                position: relative;
+                text-align: right;
+                height: 400px;
+                width: 400px;
+            }
+
+            .gmap_canvas {
+                overflow: hidden;
+                background: none !important;
+                height: 400px;
+                width: 400px;
+            }
+        </style>
+    </div>
+    </div>
+{% endblock %}
