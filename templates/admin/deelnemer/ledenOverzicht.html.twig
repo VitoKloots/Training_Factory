@@ -11,6 +11,7 @@
             <th scope="col">Achternaam</th>
             <th scope="col">E-mail</th>
             <th scope="col">Geslacht</th>
+            <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
@@ -23,11 +24,15 @@
                 <td>{{ leden.email }}</td>
                 <td>{{ leden.geslacht }}</td>
                 <td>
+                    <a type="button" class="btn btn-outline-info" href="{{ path('admin_edit_user', {'id':leden.id}) }}">edit</a>
+                </td>
+                <td>
                     <form method="post" action="{{ path('admin_user_delete', {'id': leden.id}) }}">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ leden.id) }}">
                         <button type="submit" class="btn btn-outline-danger">Verwijderen</button>
                     </form>
                 </td>
+
             </tr>
         {% endfor %}
         </tbody>

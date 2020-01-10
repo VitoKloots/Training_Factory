@@ -18,7 +18,7 @@
                 {% if is_granted ('ROLE_ADMIN') %}
                     <a class="nav-item nav-link active" href="{{ path('admin_instructeur_index') }}">Overzicht instructeurs</a>
                     <a class="nav-item nav-link active" href="{{ path('admin_leden_index') }}">Overzicht leden</a>
-                    <a class="nav-item nav-link active" href="{{ path('aanbod') }}">Lessen</a>
+                    <a class="nav-item nav-link active" href="{{ path('aanbod') }}">Trainingen</a>
                 {% elseif is_granted('ROLE_INSTRUCTOR') %}
                     <a class="nav-item nav-link active" href="{{ path('aanbod') }}">Zie lessen</a>
                 {% else %}

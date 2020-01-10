@@ -28,6 +28,7 @@ class DeelnemersController extends AbstractController
         $user = $this->getUser();
         $password = $user->getPassword();
         $form = $this->createForm(UserType::class, $user);
+        $form->remove('Plainpassword');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

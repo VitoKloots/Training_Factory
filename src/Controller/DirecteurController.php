@@ -169,18 +169,16 @@ class DirecteurController extends AbstractController
     }
 
     /**
-     * @Route("/user/edit", name="edit_user", methods={"GET","POST"})
+     * @Route("/user/editUser/{id}", name="edit_user", methods={"GET","POST"})
      */
-    public function edituserAction(Request $request)
+    public function edituserAction(Request $request, User $user)
     {
-        $user = $this->getUser();
-        $password = $user->getPassword();
         $form = $this->createForm(UserType::class, $user);
+        $form->remove('Plainpassword');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-            $user->setPassword($password);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
