@@ -1,9 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block medewerkers %}
-    <a type="button" class="btn btn-success" href="{{ path('admin_registreren_Instructeur') }}">Instructeur toevoegen</a>
+    <a type="button" class="btn btn-success" href="{{ path('admin_registreren_Instructeur') }}">Instructeur
+        toevoegen</a>
 
-    {% for in in instructor  %}
-
-    {% endfor %}
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Voornaam</th>
+            <th scope="col">Tussenvoegsel</th>
+            <th scope="col">Achternaam</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Geslacht</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for instructeur in instructeurs %}
+            <tr>
+                <td>{{ instructeur.voornaam }}</td>
+                <td>{{ instructeur.tussenvoegsel }}</td>
+                <td>{{ instructeur.achternaam }}</td>
+                <td>{{ instructeur.email }}</td>
+                <td>{{ instructeur.geslacht }}</td>
+                <td><a type="button" class="btn btn-outline-danger" href="#">Verwijderen</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

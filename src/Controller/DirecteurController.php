@@ -38,9 +38,9 @@ class DirecteurController extends AbstractController
      */
     public function instructeurIndex()
     {
-        $instructeur = $this->getDoctrine()->getRepository('App:User')->findAll();
+        $instructeur = $this->getDoctrine()->getRepository(User::class)->findByRole('ROLE_INSTRUCTOR');
         return $this->render('admin/medewerker/instructeurOverzicht.html.twig', [
-            'instructeur' => $instructeur
+            'instructeurs' => $instructeur
         ]);
     }
 
