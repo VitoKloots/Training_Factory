@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block leden %}
 
+    <div class="display-3">Overzicht leden</div>
+
     <table class="table mt-5">
         <thead>
         <tr>
@@ -20,7 +22,12 @@
                 <td>{{ leden.achternaam }}</td>
                 <td>{{ leden.email }}</td>
                 <td>{{ leden.geslacht }}</td>
-                <td><a type="button" class="btn btn-outline-danger" href="#">Verwijderen</a></td>
+                <td>
+                    <form method="post" action="{{ path('admin_user_delete', {'id': leden.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ leden.id) }}">
+                        <button type="submit" class="btn btn-outline-danger">Verwijderen</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block medewerkers %}
-    <a type="button" class="btn btn-success" href="{{ path('admin_registreren_Instructeur') }}">Instructeur
+
+    <div class="display-3">Overzicht instructeurs</div>
+    <a type="button" class="btn btn-success mt-3" href="{{ path('admin_registreren_Instructeur') }}">Instructeur
         toevoegen</a>
 
     <table class="table mt-5">
@@ -12,6 +14,7 @@
             <th scope="col">E-mail</th>
             <th scope="col">Geslacht</th>
             <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -22,7 +25,16 @@
                 <td>{{ instructeur.achternaam }}</td>
                 <td>{{ instructeur.email }}</td>
                 <td>{{ instructeur.geslacht }}</td>
-                <td><a type="button" class="btn btn-outline-danger" href="#">Verwijderen</a></td>
+                <td>
+                    <form method="post" action="{{ path('admin_user_delete', {'id': instructeur.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ instructeur.id) }}">
+                        <button type="submit" class="btn btn-outline-danger">Verwijderen</button>
+                    </form>
+                </td>
+
+                <td>
+                    <a href="{{ path('admin_edit_user') }}">edit</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

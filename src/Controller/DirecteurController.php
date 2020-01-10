@@ -17,7 +17,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Require ROLE_ADMIN for *every* controller method in this class.
+ * Require ROLE_ADMIN for *every* controller method in this class
+ * .
  * @Route("/admin", name="admin_")
  * @IsGranted("ROLE_ADMIN")
  */
@@ -127,6 +128,7 @@ class DirecteurController extends AbstractController
         return $this->redirectToRoute('admin_training_index');
     }
 
+
     /**
      * @Route("/registrerenInstructeur", name="registreren_Instructeur")
      */
@@ -149,6 +151,48 @@ class DirecteurController extends AbstractController
         return $this->render('bezoeker/registreren.html.twig', [
             'form'=>$form->createView(),
             'title' => 'Instructeur Registreren'
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}", name="user_delete", methods={"POST"})
+     */
+    public function ledenDelete(Request $request, User $user): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_instructeur_index');
+    }
+
+    /**
+     * @Route("/user/edit", name="edit_user", methods={"GET","POST"})
+     */
+    public function edituserAction(Request $request)
+    {
+        $user = $this->getUser();
+        $password = $user->getPassword();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $user->setPassword($password);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('bezoeker/registreren.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+            'title' => 'Profiel bewerken',
+            ''
         ]);
     }
 
