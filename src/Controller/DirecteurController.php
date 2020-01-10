@@ -36,11 +36,22 @@ class DirecteurController extends AbstractController
     /**
      * @Route("/instructeurOverzicht", name="instructeur_index")
      */
-    public function instructeurIndex()
+    public function instructeurIndexFunction()
     {
         $instructeur = $this->getDoctrine()->getRepository(User::class)->findByRole('ROLE_INSTRUCTOR');
         return $this->render('admin/medewerker/instructeurOverzicht.html.twig', [
             'instructeurs' => $instructeur
+        ]);
+    }
+
+    /**
+     * @Route("/ledenOverzicht", name="leden_index")
+     */
+    public function deelnemerIndexFunction()
+    {
+        $leden = $this->getDoctrine()->getRepository(User::class)->findByRole('ROLE_USER');
+        return $this->render('admin/deelnemer/ledenOverzicht.html.twig', [
+            'lid' => $leden
         ]);
     }
 

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block leden %}
+
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Voornaam</th>
+            <th scope="col">Tussenvoegsel</th>
+            <th scope="col">Achternaam</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Geslacht</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for leden in lid %}
+            <tr>
+                <td>{{ leden.voornaam }}</td>
+                <td>{{ leden.tussenvoegsel }}</td>
+                <td>{{ leden.achternaam }}</td>
+                <td>{{ leden.email }}</td>
+                <td>{{ leden.geslacht }}</td>
+                <td><a type="button" class="btn btn-outline-danger" href="#">Verwijderen</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
